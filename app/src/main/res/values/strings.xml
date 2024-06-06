@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CabifyTestApp</string>
+    <string name="app_no_items">Nothing is here. It is empty</string>
+    <string name="app_error_ocurred">Something went wrong. Please try again later.</string>
+    <string name="app_price_per_item">Price per item %s</string>
+    <string name="app_items_count">%s items</string>
+    <string name="app_add_to_basket">Add to basket</string>
+    <string name="app_total_price">Total price for all items:</string>
+    <string name="app_voucher_2_in_1_promotion">Every second voucher is free. Buy 2 and pay for 1 only.</string>
+    <string name="app_tshirt_3_or_more_promotion">Buy 3 or more and get 1€ discount for every T shirt.</string>
+</resources>
