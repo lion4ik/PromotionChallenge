@@ -4,13 +4,9 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -32,6 +28,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.alexey.cabifytestapp.DI
 import com.alexey.cabifytestapp.R
+import com.alexey.cabifytestapp.ui.basket.BasketProductsViewModel
+import com.alexey.cabifytestapp.ui.basket.BasketScreen
+import com.alexey.cabifytestapp.ui.product.ProductsScreen
 import com.alexey.cabifytestapp.ui.theme.Purple80
 
 @Composable
@@ -40,12 +39,14 @@ internal fun AppScreens(
 ) {
     val navController = rememberNavController()
     Scaffold(
-        modifier = modifier.windowInsetsPadding(
-            WindowInsets.systemBars.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
-        ),
+        modifier = modifier,
         bottomBar = { BottomBar(navController, modifier = Modifier.fillMaxWidth()) },
         content = { innerPadding ->
-            Box(modifier = Modifier.padding(innerPadding)) {
+            Box(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .consumeWindowInsets(innerPadding),
+            ) {
                 Navigation(navController = navController)
             }
         }

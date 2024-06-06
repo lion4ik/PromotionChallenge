@@ -1,10 +1,10 @@
-package com.alexey.cabifytestapp.ui
+package com.alexey.cabifytestapp.ui.basket
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alexey.cabifytestapp.domain.BasketProductItem
+import com.alexey.cabifytestapp.domain.model.BasketProductItem
 import com.alexey.cabifytestapp.domain.GetBasketProductsUseCase
-import com.alexey.cabifytestapp.domain.ProductCode
+import com.alexey.cabifytestapp.domain.model.ProductCode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

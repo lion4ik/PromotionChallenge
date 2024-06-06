@@ -1,4 +1,4 @@
-package com.alexey.cabifytestapp.ui
+package com.alexey.cabifytestapp.ui.basket
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,9 +20,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexey.cabifytestapp.R
-import com.alexey.cabifytestapp.domain.BasketProductItem
+import com.alexey.cabifytestapp.domain.model.BasketProductItem
+import com.alexey.cabifytestapp.domain.model.ProductCode
 import com.alexey.cabifytestapp.ui.theme.Green
 import java.util.Currency
 import java.util.Locale
@@ -85,7 +87,7 @@ internal fun TotalPriceItem(totalPrice: Double) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(end = 8.dp),
-            text = "${totalPrice}${euroSymbol}",
+            text = "${totalPrice}$euroSymbol",
             style = MaterialTheme.typography.displaySmall,
             textAlign = TextAlign.End
         )
@@ -120,7 +122,7 @@ internal fun BasketItemUi(
                 Text(
                     text = stringResource(
                         id = R.string.app_price_per_item,
-                        "${product.originalPrice}${euroSymbol}"
+                        "${product.originalPrice}$euroSymbol"
                     ),
                     style = MaterialTheme.typography.bodyMedium
                 )
@@ -149,7 +151,7 @@ internal fun BasketItemUi(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (originalPriceForAll != finalPriceForAll) {
                         Text(
-                            text = "${originalPriceForAll}${euroSymbol}",
+                            text = "${originalPriceForAll}$euroSymbol",
                             style = MaterialTheme.typography.titleLarge.plus(
                                 TextStyle(
                                     textDecoration = TextDecoration.LineThrough
@@ -162,7 +164,7 @@ internal fun BasketItemUi(
                     Spacer(modifier = Modifier.padding(2.dp))
 
                     Text(
-                        text = "${finalPriceForAll}${euroSymbol}",
+                        text = "${finalPriceForAll}$euroSymbol",
                         style = MaterialTheme.typography.displaySmall,
                         textAlign = TextAlign.End
                     )
@@ -170,4 +172,26 @@ internal fun BasketItemUi(
             }
         }
     }
+}
+@Preview
+@Composable
+internal fun TotalPriceItemPreview() {
+    TotalPriceItem(50.0)
+}
+
+@Preview
+@Composable
+internal fun BasketItemPreview() {
+    BasketItemUi(
+        listOf(
+            BasketProductItem("Sample item", 5f, 5f, ProductCode.VOUCHER),
+            BasketProductItem(
+                "Sample item",
+                5f,
+                0f,
+                ProductCode.VOUCHER,
+                R.string.app_voucher_2_in_1_promotion
+            ),
+        )
+    )
 }

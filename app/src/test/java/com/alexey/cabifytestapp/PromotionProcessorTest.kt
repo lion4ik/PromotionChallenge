@@ -1,11 +1,11 @@
 package com.alexey.cabifytestapp
 
-import com.alexey.cabifytestapp.domain.BasketProductItem
-import com.alexey.cabifytestapp.domain.PromotionProcessor
-import com.alexey.cabifytestapp.domain.ProductCode
-import com.alexey.cabifytestapp.domain.ProductItem
-import com.alexey.cabifytestapp.domain.TShirt3OrMoreDiscountPromotionInterceptor
-import com.alexey.cabifytestapp.domain.Voucher2In1PromotionInterceptor
+import com.alexey.cabifytestapp.domain.model.BasketProductItem
+import com.alexey.cabifytestapp.domain.promotion.PromotionProcessor
+import com.alexey.cabifytestapp.domain.model.ProductCode
+import com.alexey.cabifytestapp.domain.model.ProductItem
+import com.alexey.cabifytestapp.domain.promotion.TShirt3OrMoreDiscountPromotionInterceptor
+import com.alexey.cabifytestapp.domain.promotion.Voucher2In1PromotionInterceptor
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

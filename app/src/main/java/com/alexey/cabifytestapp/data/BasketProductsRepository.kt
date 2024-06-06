@@ -1,8 +1,8 @@
 package com.alexey.cabifytestapp.data
 
+import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.alexey.cabifytestapp.App
 import com.alexey.cabifytestapp.DI.dataStore
 import com.alexey.cabifytestapp.observability.ObservabilityMonitor
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +14,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
 internal class BasketProductsRepository(
-    private val app: App,
+    private val appContext: Context,
     private val jsonParser: Json,
     private val observabilityMonitor: ObservabilityMonitor
 ) {
@@ -35,7 +35,7 @@ internal class BasketProductsRepository(
         val list = getProductsInBasket().toMutableList()
         list.add(product)
         try {
-            app.dataStore.edit { prefs ->
+            appContext.dataStore.edit { prefs ->
                 prefs[PREFERENCE_KEY_PRODUCTS_IN_BASKET] =
                     jsonParser.encodeToString(
                         listSerializer,
@@ -64,7 +64,7 @@ internal class BasketProductsRepository(
     private suspend fun getProductsInBasket(): List<ProductData> {
         var rawProducts: String? = null
         try {
-            rawProducts = app.dataStore.data.map {
+            rawProducts = appContext.dataStore.data.map {
                 it[PREFERENCE_KEY_PRODUCTS_IN_BASKET]
             }.first()
             if (rawProducts != null) {

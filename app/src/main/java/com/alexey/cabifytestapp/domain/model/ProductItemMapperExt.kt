@@ -1,4 +1,4 @@
-package com.alexey.cabifytestapp.domain
+package com.alexey.cabifytestapp.domain.model
 
 import com.alexey.cabifytestapp.data.ProductData
 

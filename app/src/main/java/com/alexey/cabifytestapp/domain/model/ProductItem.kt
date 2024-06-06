@@ -1,4 +1,4 @@
-package com.alexey.cabifytestapp.domain
+package com.alexey.cabifytestapp.domain.model
 
 internal data class ProductItem(
     val name: String,

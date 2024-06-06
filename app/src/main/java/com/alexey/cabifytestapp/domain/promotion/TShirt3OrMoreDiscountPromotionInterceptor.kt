@@ -1,6 +1,8 @@
-package com.alexey.cabifytestapp.domain
+package com.alexey.cabifytestapp.domain.promotion
 
 import com.alexey.cabifytestapp.R
+import com.alexey.cabifytestapp.domain.model.BasketProductItem
+import com.alexey.cabifytestapp.domain.model.ProductCode
 
 internal class TShirt3OrMoreDiscountPromotionInterceptor : PromotionProcessor.PromotionInterceptor {
 

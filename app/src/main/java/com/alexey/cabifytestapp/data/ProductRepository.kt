@@ -1,7 +1,7 @@
 package com.alexey.cabifytestapp.data
 
-import com.alexey.cabifytestapp.domain.ProductItem
-import com.alexey.cabifytestapp.domain.toDomainModel
+import com.alexey.cabifytestapp.domain.model.ProductItem
+import com.alexey.cabifytestapp.domain.model.toDomainModel
 import com.alexey.cabifytestapp.observability.ObservabilityMonitor
 
 internal class ProductRepository(

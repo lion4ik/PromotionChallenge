@@ -1,4 +1,7 @@
-package com.alexey.cabifytestapp.domain
+package com.alexey.cabifytestapp.domain.promotion
+
+import com.alexey.cabifytestapp.domain.model.BasketProductItem
+import com.alexey.cabifytestapp.domain.model.ProductItem
 
 internal class PromotionProcessor(
     private val promotionInterceptors: List<PromotionInterceptor>

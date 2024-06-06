@@ -1,4 +1,4 @@
-package com.alexey.cabifytestapp.ui
+package com.alexey.cabifytestapp.ui.product
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
@@ -22,9 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexey.cabifytestapp.R
-import com.alexey.cabifytestapp.domain.ProductItem
+import com.alexey.cabifytestapp.domain.model.ProductCode
+import com.alexey.cabifytestapp.domain.model.ProductItem
 import java.util.Currency
 import java.util.Locale
 
@@ -37,8 +39,8 @@ internal fun ProductsScreen(
     when (val state = collectedState) {
         is ProductsViewModel.ProductsState.DataState -> {
             LazyColumn(modifier = modifier) {
-                items(state.products) {
-                    ProductItemUi(it, viewModel)
+                items(state.products) { productItem ->
+                    ProductItemUi(productItem) { viewModel.onAddToBasket(it) }
                 }
             }
         }
@@ -75,7 +77,10 @@ internal fun EmptyOrErrorList(@StringRes descriptionResId: Int) {
 }
 
 @Composable
-internal fun ProductItemUi(product: ProductItem, viewModel: ProductsViewModel) {
+internal fun ProductItemUi(
+    product: ProductItem,
+    onAddToBasketClicked: (product: ProductItem) -> Unit
+) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -95,7 +100,7 @@ internal fun ProductItemUi(product: ProductItem, viewModel: ProductsViewModel) {
 
                 Button(
                     onClick = {
-                        viewModel.onAddToBasket(product)
+                        onAddToBasketClicked(product)
                     }) {
                     Text(
                         text = stringResource(id = R.string.app_add_to_basket),
@@ -113,4 +118,18 @@ internal fun ProductItemUi(product: ProductItem, viewModel: ProductsViewModel) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+internal fun ErrorOrEmptyPreview() {
+    EmptyOrErrorList(R.string.app_error_ocurred)
+}
+
+@Preview
+@Composable
+internal fun ProductItemPreview() {
+    ProductItemUi(
+        ProductItem("Sample item", 5f, ProductCode.VOUCHER)
+    ) { }
 }
